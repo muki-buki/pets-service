@@ -1,6 +1,6 @@
 package org.muki.pets.web.argresolver;
 
-import org.muki.pets.config.ObjectMappingConfig;
+import org.muki.pets.web.config.ObjectMappingConfig;
 import org.muki.pets.config.TestPropertiesConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

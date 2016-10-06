@@ -1,4 +1,4 @@
-package org.muki.pets.web;
+package org.muki.pets.web.api;
 
 public class CreatePetWebResponse {
     private String id;

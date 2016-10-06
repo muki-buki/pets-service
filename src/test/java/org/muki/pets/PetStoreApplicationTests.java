@@ -2,7 +2,7 @@ package org.muki;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.muki.pets.config.ObjectMappingConfig;
+import org.muki.pets.web.config.ObjectMappingConfig;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 

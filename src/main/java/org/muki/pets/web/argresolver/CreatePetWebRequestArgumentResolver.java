@@ -1,6 +1,6 @@
 package org.muki.pets.web.argresolver;
 
-import org.muki.pets.web.CreatePetWebRequest;
+import org.muki.pets.web.api.CreatePetWebRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;
