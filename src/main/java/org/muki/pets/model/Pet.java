@@ -6,24 +6,18 @@ import javax.validation.constraints.NotNull;
 
 public class Pet {
 
+    private String id;
+    @NotNull
+    private String name;
+    @NotNull
+    private String category;
+    private DateTime updated;
+    private Double price;
+    private String description;
+
     public Pet() {
 
     }
-
-    private String id;
-
-    @NotNull
-    private String name;
-
-    @NotNull
-    private String category;
-
-
-    private DateTime updated;
-
-    private Double price;
-
-    private String description;
 
     public Pet(String name, String category) {
         this.name = name;

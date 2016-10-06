@@ -2,19 +2,16 @@ package org.muki.pets.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-
-import java.util.Arrays;
-import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatcher;
+import org.muki.pets.config.IntegrationTestConfig;
 import org.muki.pets.model.Pet;
 import org.muki.pets.service.PetService;
 import org.muki.pets.utils.Builder;
 import org.muki.pets.web.config.ObjectMappingConfig;
-import org.muki.pets.web.config.WebConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -25,9 +22,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Arrays;
+
 import static org.mockito.Matchers.argThat;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 import static org.muki.pets.web.api.EndpointPaths.PETS_URL;
 import static org.muki.pets.web.api.EndpointPaths.PET_URL;
@@ -37,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = {PetControllerTestConfig.class, ObjectMappingConfig.class, WebConfig.class})
+@SpringBootTest(classes = {PetControllerTestConfig.class, ObjectMappingConfig.class, IntegrationTestConfig.class})
 @WebAppConfiguration
 public class PetControllerTest {
 
@@ -132,7 +131,7 @@ public class PetControllerTest {
         final String category = "dogs";
 
         final Pet pet = new Builder<Pet>() {
-        }       .set("id", id)
+        }.set("id", id)
                 .set("name", name)
                 .set("category", category)
                 .build();
@@ -143,7 +142,8 @@ public class PetControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id").value(id))
                 .andExpect(jsonPath("name").value(name))
-                .andExpect(jsonPath("category").value(category));;
+                .andExpect(jsonPath("category").value(category));
+        ;
     }
 
 }

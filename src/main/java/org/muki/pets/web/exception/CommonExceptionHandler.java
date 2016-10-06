@@ -1,6 +1,5 @@
 package org.muki.pets.web.exception;
 
-import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

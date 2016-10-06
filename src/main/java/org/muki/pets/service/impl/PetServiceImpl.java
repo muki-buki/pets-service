@@ -1,6 +1,5 @@
 package org.muki.pets.service.impl;
 
-import org.joda.time.DateTime;
 import org.muki.pets.model.Pet;
 import org.muki.pets.service.PetService;
 
