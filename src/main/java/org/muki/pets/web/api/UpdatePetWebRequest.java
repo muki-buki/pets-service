@@ -2,17 +2,13 @@ package org.muki.pets.web.api;
 
 import org.hibernate.validator.constraints.SafeHtml;
 
-import javax.validation.constraints.NotNull;
 
-public class CreatePetWebRequest {
+public class UpdatePetWebRequest {
 
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    @NotNull
     private String name;
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    @NotNull
     private String category;
-    @NotNull
     private Double price;
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     private String imageUrl;

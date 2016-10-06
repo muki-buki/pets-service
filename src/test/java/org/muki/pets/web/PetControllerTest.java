@@ -30,8 +30,7 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 import static org.muki.pets.web.api.EndpointPaths.PETS_URL;
 import static org.muki.pets.web.api.EndpointPaths.PET_URL;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -140,10 +139,74 @@ public class PetControllerTest {
 
         mockMvc.perform(get(PET_URL, id)
                 .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(id))
                 .andExpect(jsonPath("name").value(name))
                 .andExpect(jsonPath("category").value(category));
-        ;
     }
 
+    @Test
+    public void getPet_404() throws Exception {
+        final String id = "dyno";
+        when(petService.getPet(eq(id))).thenReturn(null);
+
+        mockMvc.perform(get(PET_URL, id)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void updatePet() throws Exception {
+        final String id = "0000";
+        final String name = "zorro";
+        final String category = "hamster";
+
+        final Pet pet = new Builder<Pet>() {
+        }.set("id", id)
+                .set("name", name)
+                .set("category", category)
+                .build();
+
+        when(petService.getPet(eq(id))).thenReturn(pet);
+
+        final String updateName = "torro";
+        final String description = "grande torro";
+
+        final Pet update = new Builder<Pet>() {
+        }.set("description", description)
+                .set("name", updateName)
+                .build();
+
+        String body = gson.toJson(update);
+
+        mockMvc.perform(put(PET_URL, id)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body.getBytes()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("id").value(id))
+                .andExpect(jsonPath("name").value(updateName))
+                .andExpect(jsonPath("description").value(description))
+                .andExpect(jsonPath("category").value(category));
+    }
+
+    @Test
+    public void updatePet_404() throws Exception {
+        final String id = "an exquisite uniq id";
+        when(petService.getPet(eq(id))).thenReturn(null);
+
+        final String name = "oz";
+
+        final Pet update = new Builder<Pet>() {
+        }.set("name", name).build();
+
+        String body = gson.toJson(update);
+
+        mockMvc.perform(put(PET_URL, id)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body.getBytes()))
+                .andExpect(status().isNotFound());
+    }
 }

@@ -1,22 +1,17 @@
 package org.muki.pets.web.api;
 
-import org.hibernate.validator.constraints.SafeHtml;
+public class UpdatePetWebResponse {
 
-import javax.validation.constraints.NotNull;
+    private String id;
 
-public class CreatePetWebRequest {
-
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    @NotNull
     private String name;
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    @NotNull
+
     private String category;
-    @NotNull
+
     private Double price;
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+
     private String imageUrl;
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+
     private String description;
 
     public String getName() {
@@ -57,5 +52,13 @@ public class CreatePetWebRequest {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
