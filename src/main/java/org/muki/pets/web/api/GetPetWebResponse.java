@@ -35,4 +35,20 @@ public class GetPetWebResponse implements Serializable{
     public Double getPrice() {
         return price;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

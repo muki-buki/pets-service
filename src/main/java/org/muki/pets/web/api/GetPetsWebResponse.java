@@ -1,6 +1,5 @@
 package org.muki.pets.web.api;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 public class GetPetsWebResponse {
